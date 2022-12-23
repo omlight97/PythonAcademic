@@ -1,7 +1,6 @@
 import control
 import math
 import numpy as np
-import scipy.signal as signal
 
 
 class ControlToolbox:
@@ -9,7 +8,7 @@ class ControlToolbox:
     def __init__(self):
         pass
     
-    def Classic_Controller_with_Step_Response(self,numerator: list,denomerator: list,poles: complex,C_type: str= None, H=True, SettlingTime: float=0.02, Costume: control.TransferFunction=any) -> list:
+    def Classic_Controller_with_Step_Response(self,numerator: list,denomerator: list,poles: complex,C_type: str= None, H=True, SettlingTime: float=0.02, Costume: control.TransferFunction=None) -> list:
         #calculate the step Response of a closed loop system with a negetive entrance. Controller is chosen based on
         # user's specification
         call = ControlToolbox()
