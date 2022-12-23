@@ -79,7 +79,7 @@ class ControlToolbox:
         return C_PD
 
     def PI_creator(self,transfer_func: control.TransferFunction, dom_poles: complex) -> list: #given K>0
-        # This function finds a the coeff K and a for a PI controller ,C(s) = K(s+a)/s. K & a are foud 
+        # This function finds a the coeff K and a for a PI controller ,C(s) = K(s+a)/s. K & a are found 
         # using the Gain and Phase law learnd in class.
         # please enter one complex pole only - choice is arbitrary.
         call = ControlToolbox()
@@ -108,11 +108,20 @@ class ControlToolbox:
         tf_numerator_with_pole =  tf_numerator(dom_poles); tf_denomirator_with_pole = tf_denomirator(dom_poles)
         #print(tf_denomirator_with_pole); print(tf_numerator_with_pole)
         #calculating coeff
-        a = (np.abs(np.real(dom_poles))/10); print(a)
+        a = (np.abs(np.real(dom_poles))/10)
         K=1/(np.linalg.norm((tf_numerator_with_pole/tf_denomirator_with_pole)))
         C_PI = control.tf([K,K*a],[1,0])
         return C_PI
 
+
+    def PID_creator(self,transfer_func: control.TransferFunction, dom_poles: complex) -> list: #given K>0
+        # This function finds a the coeff K and a for a PD controller ,C(s) = K(s+a_PD)*(s+a_PI)/s. it calculates 
+        # please enter one complex pole only - choice is arbitrary.
+        call = ControlToolbox()
+        C_PD = call.PD_creator(transfer_func, dom_poles)
+        a = (np.abs(np.real(dom_poles))/10)
+        C_PI = control.tf([1,a],[1,0])
+        return C_PD*C_PI
 
     def get_second_order_imaginary_poles(self, wn: float, zeta: float) -> list:
         #calculates the poles of s^2+2wn*zeta*s+wn^2

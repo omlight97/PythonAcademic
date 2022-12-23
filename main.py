@@ -9,14 +9,14 @@ call = ctrl(); call_plot = plot()
 
 #Q1
 poles1 = np.complex_(-8.15+16j); deno1 = [[1,10],[1,3],[1,6]]; nume1 = [[1,8]]
-[P1,C1,CP1_CL,tout1,yout1,stepinfo1] = call.Classic_Controller_with_Step_Response(nume1,deno1,poles=poles1,"PID")
+[P1,C1,CP1_CL,tout1,yout1,stepinfo1] = call.Classic_Controller_with_Step_Response(nume1,deno1,poles=poles1,C_type="PID")
 call_plot.plot_step_response(tout1,yout1) 
-print(P1*C1)
+print(C1)
 
 #Q2
 poles2 = call.get_second_order_imaginary_poles(17,0.93); dom_pole2 = poles2[0]
 deno2 = [[1,2,3.25],[1,4]]; nume2 = [[4,8],[1,8]]
-[P2,C2,CP2_CL,tout2,yout2,stepinfo2] = call.Classic_Controller_with_Step_Response(nume2,deno2,poles=dom_pole2,"PI",SettlingTime=0.01)
+[P2,C2,CP2_CL,tout2,yout2,stepinfo2] = call.Classic_Controller_with_Step_Response(nume2,deno2,poles=dom_pole2,C_type="PI",SettlingTime=0.01)
 call_plot.plot_step_response(tout2,yout2) 
 
 #Q3
