@@ -1,6 +1,6 @@
 ﻿# PythonAcademic
 
-# todo:
+ todo:
 # apply more list comprehanssion in code (See improper function)
 # in loops, use more enumerate command (instead of range(len))
 # defining new variables - seprate line for each variable. if I decide to do so - use [s ,  im_tf = control.tf("s"),  0] and dont use ";"
