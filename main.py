@@ -7,6 +7,14 @@ import scipy
 from Tools.Graph import PlotTool as plot
 call = ctrl(); call_plot = plot()
 
+#todo:
+#apply more list comprehanssion in code (See improper function)
+#in loops, use more enumerate command (instead of range(len))
+#defining new variables - seprate line for each variable. if I decide to do so - use [s ,  im_tf = control.tf("s"),  0] and dont use ";"
+#use matchcase more (insted of if's)
+#more comments
+
+
 #Q1
 poles1 = np.complex_(-8.15+16j); deno1 = [[1,10],[1,3],[1,6]]; nume1 = [[1,8]]
 [P1,C1,CP1_CL,tout1,yout1,stepinfo1] = call.Classic_Controller_with_Step_Response(nume1,deno1,poles=poles1,C_type="PID")
