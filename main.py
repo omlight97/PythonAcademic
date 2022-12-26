@@ -1,18 +1,28 @@
-from Class.ControlTheory import ControlToolbox as ctrl
 import control
+from math import atan2
 import matplotlib.pyplot as plt
 import numpy as np
-from math import atan2
 import scipy
-from Tools.Graph import PlotTool as plot
-call = ctrl(); call_plot = plot()
 
-#todo:
-#apply more list comprehanssion in code (See improper function)
-#in loops, use more enumerate command (instead of range(len))
-#defining new variables - seprate line for each variable. if I decide to do so - use [s ,  im_tf = control.tf("s"),  0] and dont use ";"
-#use matchcase more (insted of if's)
-#more comments
+
+from Class.ControlTheory import ControlToolbox as ctrl
+from Tools.Graph import PlotTool as plot
+
+
+call = ctrl()
+call_plot = plot()
+
+
+# todo:
+# apply more list comprehanssion in code (See improper function)
+# in loops, use more enumerate command (instead of range(len))
+# defining new variables - seprate line for each variable. if I decide to do so - use [s ,  im_tf = control.tf("s"),  0] and dont use ";"
+# use matchcase more (insted of if's)
+# remove big letters from variables name
+# use @staticmethod (instead of self)
+# add info on function using """"text""""". the # is for view only, not user
+# organize imports and call talls by alphabetical order. Also use better name (for call function)
+# in function, make sure you put space between local variable name and the expected type of the variable (see classic_controller for exmple)
 
 
 #Q1
@@ -31,11 +41,12 @@ call_plot.plot_step_response(tout2,yout2)
 deno3 = [[1,1],[1,4],[1,8]]; nume3 = [[1,6]]
 Kp = 32.9; Ki=17.8; C_P3 = control.tf([Kp,Ki],[1,0])
 [P3,C3,CP3_CL,tout3,yout3,stepinfo3] = call.Classic_Controller_with_Step_Response(nume3,deno3,None,"costume",SettlingTime=0.01, Costume=C_P3)
-print(stepinfo3); print(C3*P3)
+print(stepinfo3)
+print(C3*P3)
 call_plot.plot_step_response(tout3,yout3) 
 
 #Q4
-tf4 = call.tf_creator([[0,1]],[[1,1],[1,3],[1,5]])
+tf4 = call.tf_creator(zeros_array=[0,1],poles_array=[[1,1],[1,3],[1,5]])
 #roots,gains = control.rlocus(tf4); plt.show()
 Kp = 72.7; C_PID4 = call.improper_tf([Kp*0.1637,Kp*1])+control.tf([Kp*0.916],[1,0])
 [P4,C4,CP4_CL,tout4,yout4,stepinfo4] = call.Classic_Controller_with_Step_Response([[0,1]],[[1,1],[1,3],[1,5]],None,"costume", Costume=C_PID4)
